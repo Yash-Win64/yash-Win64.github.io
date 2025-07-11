@@ -64,11 +64,13 @@ try:
     else:
         model = AdaBoostClassifier(random_state=5)
 
-    # Train the model
-    model.fit(X_resampled, y_resampled)
+    # 👇 Add spinner during model training and prediction
+    with st.spinner("🔄 Please wait while the model trains and makes predictions..."):
+        # Train the model
+        model.fit(X_resampled, y_resampled)
 
-    # Predict
-    y_pred = model.predict(X_test)
+        # Predict
+        y_pred = model.predict(X_test)
 
     # Accuracy
     acc = accuracy_score(y_test, y_pred)
@@ -102,3 +104,8 @@ except FileNotFoundError:
     st.error(f"❌ File not found. Please make sure `{file_path}` exists.")
 except Exception as e:
     st.error(f"⚠️ Error: {e}")
+
+
+
+
+
