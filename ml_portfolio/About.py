@@ -1,13 +1,15 @@
 import streamlit as st
 import json
 from streamlit_lottie import st_lottie
-
+import os
+from components.load_css import load_css
 # Page config
 st.set_page_config(page_title="About – Yash Mishra", layout="wide")
 
 # Load CSS
-with open("assets/style.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+load_css()
+
 
 # Load Lottie animation
 def load_lottie(path):

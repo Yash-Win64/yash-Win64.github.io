@@ -1,12 +1,13 @@
 # pages/7_Blogs.py
 import streamlit as st
+import os
+from components.load_css import load_css
 
 # Page config
 st.set_page_config(page_title="🧠 Blogs – Yash Mishra", layout="wide")
 
 # Load CSS
-with open("assets/style.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+load_css()
 
 st.title("🧠 My Project Blogs")
 st.markdown("Here I break down the concepts and learnings behind each of my machine learning projects.")
@@ -131,4 +132,6 @@ if st.button("📫 Contact Me"):
     st.switch_page("pages/6_Contact.py")
 
 
-st.markdown(" [🔙 Back to Projects](pages/Home.py)")
+
+if st.button("⬅ Back to Ad Click Project"):
+    st.switch_page("pages/Home.py")
