@@ -1,3 +1,6 @@
+ml_portfolio/data/ratings.csv
+ml_portfolio/data/creditcard.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
