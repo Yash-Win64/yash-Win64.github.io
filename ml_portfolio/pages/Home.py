@@ -3,22 +3,15 @@ from components.project_card import project_card
 import json
 from streamlit_lottie import st_lottie
 import os
+from components.load_css import load_css
+from components.load_lottie import load_lottie
 
-# Page config
 st.set_page_config(page_title="Projects – Yash", layout="wide")
+load_css()
 
-# Load CSS
-
-css_path = os.path.join(os.path.dirname(__file__), "../assets/style.css")
-with open(css_path) as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-# Load animation
-def load_lottie(path):
-    with open(path, "r") as f:
-        return json.load(f)
-
-ml_anim = load_lottie("assets/ml.json")
-st_lottie(ml_anim, height=150)
+ml_anim = load_lottie("ml.json")
+if ml_anim:
+    st_lottie(ml_anim, height=150)
 
 st.title("🚀 Featured Projects")
 
@@ -59,7 +52,5 @@ project_card(
 )
 
 st.markdown("---")
-st.markdown("📚 Want to read more?")
-
 if st.button("🧠 Read My Blogs"):
     st.switch_page("pages/7_Blogs.py")

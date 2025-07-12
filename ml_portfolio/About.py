@@ -3,27 +3,18 @@ import json
 from streamlit_lottie import st_lottie
 import os
 from components.load_css import load_css
-# Page config
+from components.load_lottie import load_lottie
+
 st.set_page_config(page_title="About – Yash Mishra", layout="wide")
-
-# Load CSS
-
 load_css()
 
 
-# Load Lottie animation
-def load_lottie(path):
-    with open(path, "r") as f:
-        return json.load(f)
+hello_anim = load_lottie("hello.json")
+if hello_anim:
+    st_lottie(hello_anim, height=250)
 
-hello_anim = load_lottie("assets/hello.json")
-
-# Hero Section
-st_lottie(hello_anim, height=250)
 st.title("👋 About Me – Yash Mishra")
 st.subheader("Machine Learning & Data Analytics Enthusiast")
-
-# Professional Overview
 st.markdown("""
 I'm a final-year **B.Tech CSE (AI & ML)** student at **SRMGPC**, passionate about solving real-world problems with data-driven solutions.
 
@@ -43,18 +34,18 @@ I aspire to work as a **Data Analyst or ML Engineer**, building scalable tools t
 ### 📫 Let's Explore My Work
 """)
 
-# Next button
 if st.button("🚀 Next: View My Projects"):
     st.switch_page("pages/Home.py")
 
-
-with open("assets/resume_yash.pdf", "rb") as pdf_file:
-    PDFbyte = pdf_file.read()
-
-st.download_button(
-    label="📥 Download My Resume (PDF)",
-    data=PDFbyte,
-    file_name="Yash_Mishra_Resume.pdf",
-    mime="application/pdf",
-    use_container_width=True
-)
+pdf_path = os.path.join("assets", "resume_yash.pdf")
+if os.path.exists(pdf_path):
+    with open(pdf_path, "rb") as pdf_file:
+        st.download_button(
+            label="📥 Download My Resume (PDF)",
+            data=pdf_file.read(),
+            file_name="Yash_Mishra_Resume.pdf",
+            mime="application/pdf",
+            use_container_width=True
+        )
+else:
+    st.error("❌ Resume file not found.")
